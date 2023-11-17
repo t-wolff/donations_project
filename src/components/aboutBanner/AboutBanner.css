@@ -1,0 +1,17 @@
+.about-banner-container{
+	width: 80vw;
+	height: 60vh;
+	margin: 2rem;
+	font-size: 1.8rem;
+	color: var(--primary-text-color);
+	padding: 6rem;
+	padding-top: 3rem;
+	box-shadow: 6px 5px 50px  var(--secondary-background-color) ;
+}
+.about-banner-container h3 {
+	font-size: 4rem;
+	padding-bottom: 2rem;
+}
+.about-banner-points {
+	font-weight: 700;
+}

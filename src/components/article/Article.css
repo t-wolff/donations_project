@@ -1,0 +1,17 @@
+.article-container {
+	border-bottom: 0.1rem dotted rgb(185, 183, 183);
+}
+.article-name a,
+.article-name {
+	font-size: 2rem;
+	line-height: 4rem;
+	color: var(--primary-color);
+}
+.article-subTitle {
+	color: var(--primary-text-color);
+	font-size: 1.5rem;
+}
+.article-img {
+	width: 25rem;
+	height: 20rem;
+}

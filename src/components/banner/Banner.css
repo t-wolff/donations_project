@@ -1,0 +1,26 @@
+.banner-container {
+	width: 80vw;
+	height: 40vh;
+	background-image: url('../../assets/soldiers-fighting.jpeg');
+	/* border-radius: 0.8rem; */
+	margin: 2rem;
+	background-size: cover;
+    border-bottom: 1rem solid black;
+    border-top: 1rem solid black;
+}
+.banner-title {
+	font-size: 4.6rem;
+	line-height: 6rem;
+    text-align: center;
+    padding-top: 6rem;
+}
+.banner-title .banner-highlight {
+	color: var(--secondary-color);
+    font-size: 10.2rem;
+    letter-spacing: 0.3rem;
+    /* text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; */
+
+}
+.banner-red {
+    color: rgb(255, 0, 68);
+}

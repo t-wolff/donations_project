@@ -1,0 +1,16 @@
+.about-container{
+	width: 80vw;
+	height: 120vh;
+	margin: 2rem;
+	font-size: 1.8rem;
+	color: var(--primary-text-color);
+	padding: 3rem;
+	padding-top: 5rem;
+	box-shadow: 6px 5px 50px  var(--secondary-background-color) ;
+}
+.about-container h3 {
+	font-size: 4rem;
+}
+.about-points {
+	font-weight: 700;
+}
