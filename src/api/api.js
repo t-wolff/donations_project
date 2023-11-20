@@ -1,45 +1,68 @@
 import axios from 'axios';
+import { collection, query, where, getDocs, setDoc, doc } from 'firebase/firestore';
+import { db, } from '../firebase/firebase';
 
-const BASE_ARTICLE_URL = import.meta.env.VITE_BASE_URL;
-const SIRENS_URL = import.meta.env.VITE_SIREN_HISTORY_URL;
-
-const requestArticles = async (method, endpoint, data = null) => {
-	const res = await axios({
-		method,
-		url: `${BASE_ARTICLE_URL}${endpoint}`,
-		data,
-	});
-	return res.data;
-};
+const NEWS_URL = import.meta.env.VITE_SIREN_HISTORY_URL;
 
 export const getAllArticles = async () => {
-	return await requestArticles('get', '/');
+	const allArticlesArr = []
+	const querySnapshot = await getDocs(collection(db, 'articles'));
+	querySnapshot.forEach((doc) => {
+		allArticlesArr.push({ id: doc.id, ...doc.data() });
+	});
+	return allArticlesArr;
+};
+
+export const getNonArchiveArticles = async () => {
+	const articlesArr = []
+	const q = query(collection(db, 'articles'), where('isArchive', '==', false));
+	const querySnapshot = await getDocs(q);
+	querySnapshot.forEach((doc) => {
+		articlesArr.push({ id: doc.id, ...doc.data() });
+	});
+	return articlesArr;
 };
 
 export const getArticle = async (articleId) => {
-	return await requestArticles('get', `/${articleId}`);
-};
+	const q = query(collection(db, 'articles'), where('id', '==', articleId));
+
+	const querySnapshot = await getDocs(q);
+	querySnapshot.forEach((doc) => {
+		console.log(doc.id, ' => ', doc.data());
+	});};
 
 export const updateArticle = async (article, articleId) => {
-	return await requestArticles('put', `/${articleId}`, article);
+	// return await requestArticles('put', `/${articleId}`, article);
 };
 
+export const toggleIsArchive = async (article) => {  
+	try {
+	  await setDoc(doc(db, "articles", article.id), {
+		...article,
+		isArchive: !article.isArchive,
+	  });
+  	} catch (error) {
+	  console.error("Error during toggleIsArchive:", error);
+	}
+  };
+  
+
 export const addArticle = async (article) => {
-	return await requestArticles('post', '/', article);
+	// return await requestArticles('post', '/', article);
 };
 
 export const deleteArticle = async (articleId) => {
-	return await requestArticles('delete', `/${articleId}`);
+	// return await requestArticles('delete', `/${articleId}`);
 };
 
-const requestSirens = async (method) => {
+const requestNews = async (method) => {
 	const res = await axios({
 		method,
-		url: `${SIRENS_URL}`,
+		url: `${NEWS_URL}`,
 	});
 	return res.data;
 };
 
-export const getSirens = async () => {
-    return await requestSirens('get') 
-}
+export const getNews = async () => {
+	return await requestSirens('get');
+};

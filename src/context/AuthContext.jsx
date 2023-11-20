@@ -1,38 +1,38 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
-export const AuthContext = createContext();
+const AuthReducer = (state, action) => {
+    switch (action.type) {
+      case "LOGIN": {
+        return {
+          currentUser: action.payload,
+        };
+      }
+      case "LOGOUT": {
+        return {
+          currentUser: null,
+        };
+      }
+      default:
+        return state;
+    }
+  };
+  
+const LOGIN_STATE = {
+  currentUser: JSON.parse(localStorage.getItem("user")) || null,
+};
 
-const userFromLocalStorage = localStorage.getItem('userData')
-    ? JSON.parse(localStorage.getItem('userData'))
-    : null;
+export const AuthContext = createContext(LOGIN_STATE);
 
-export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(userFromLocalStorage);
+export const AuthContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(AuthReducer, LOGIN_STATE);
 
-    const login = (formData) => {
-        const { name, password } = formData;
-        let isAdmin = false;
-        if (name === 'admin' && password === import.meta.env.VITE_ADMIN_PASSWORD) {
-            isAdmin = true;
-        }
-        const userData = { name, isAdmin };
-        localStorage.setItem('userData', JSON.stringify(userData));
-        setUser(userData);
-    };
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(state.currentUser));
+  }, [state.currentUser]);
 
-    const logout = () => {
-        localStorage.removeItem('userData');
-        setUser(null);
-    };
-
-    return (
-        <AuthContext.Provider
-            value={{
-                user,
-                login,
-                logout,
-            }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={{ currentUser: state.currentUser, dispatch }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };

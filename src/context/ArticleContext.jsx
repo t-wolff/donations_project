@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-
-import { addArticle, updateArticle, deleteArticle, getAllArticles } from '../api/api';
+import { addArticle, updateArticle, deleteArticle, getAllArticles, toggleIsArchive } from '../api/api';
 
 export const ArticleContext = createContext();
 
@@ -9,7 +8,7 @@ export const ArticleProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchArticles = async () => {
+  const fetchAllArticles = async () => {
     try {
       const articlesData = await getAllArticles();
       setArticles(articlesData);
@@ -21,13 +20,13 @@ export const ArticleProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchArticles();
+    fetchAllArticles();
   }, []);
 
   const addNewArticle = async (article) => {
     try {
-      const newArticle = await addArticle(article);
-      setArticles(prevArticles => ([...prevArticles, newArticle]));
+      await addDoc(doc(db, "articles"), { ...article, timeStamp: serverTimestamp() });
+      setArticles(prevArticles => ([...prevArticles, article]));
     } catch (err) {
       setError(err.message);
     }
@@ -43,6 +42,14 @@ export const ArticleProvider = ({ children }) => {
       setError(err.message);
     }
   };
+
+  const toggleArchive = async (articleData) => {
+    try {
+      await toggleIsArchive(articleData);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
 
   const removeArticle = async (id) => {
     try {
@@ -68,7 +75,9 @@ export const ArticleProvider = ({ children }) => {
         addNewArticle,
         editArticle,
         removeArticle,
-        clearError
+        clearError,
+        fetchAllArticles,
+        toggleArchive,
       }}>
       {children}
     </ArticleContext.Provider>

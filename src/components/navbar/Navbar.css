@@ -10,7 +10,7 @@
 	background-color: var(--secondary-background-color);
 	border-bottom: 0.4rem solid var(--secondary-text-color);
 	line-height: 1.5rem;
-
+	z-index: 2;
 }
 .navbar-logo-container {
 	display: flex;
@@ -20,7 +20,7 @@
 	font-size: 3rem;
 	letter-spacing: 0.2rem;
 	color: var(--primary-text-color);
-	font-family:'Sanchez', serif;;
+	font-family: 'Sanchez', serif;
 }
 .nav-links {
 	display: flex;
@@ -36,22 +36,21 @@
 	padding: 1.2rem;
 }
 .nav-links a:hover {
-	color: var(--secondary-text-color)
+	color: var(--secondary-text-color);
 }
 .nav-links a.active {
 	text-decoration: underline;
 	text-underline-offset: 0.6rem;
 }
-.nav-links .login-btn{
+.nav-links .login-btn {
 	font-size: 2rem;
 	width: 20rem;
 	height: 4rem;
 	background-color: var(--primary-text-color);
 	margin-left: 2.2rem;
-	color: #fff; 
+	color: #fff;
 	font-size: 1.8rem;
 }
-.nav-links .login-btn.active{
+.nav-links .login-btn.active {
 	text-decoration: none;
 }
-

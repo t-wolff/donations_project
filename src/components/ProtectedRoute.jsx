@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { useGlobalAuthContext } from '../hooks';
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = useGlobalAuthContext();
+  const { currentUser } = useGlobalAuthContext();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user || !user?.isAdmin) {
+    if (!currentUser) {
       navigate('/');
     }
-  }, [navigate, user]);
+  }, [navigate, currentUser]);
 
   return children;
 };

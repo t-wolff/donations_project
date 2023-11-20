@@ -3,9 +3,10 @@ import { useGlobalAuthContext } from "../../hooks";
 import './Navbar.css'
 import NavListItem from './NavListItem';
 import logo from '../../assets/star-doodle.svg';
+import { ManageArticle } from "../../pages";
 
 const Navbar = () => {
-  const { user, logout } = useGlobalAuthContext();
+  const { currentUser } = useGlobalAuthContext();
 
   const navListItems = [
     {
@@ -24,7 +25,7 @@ const Navbar = () => {
       className: null
     },
     {
-      to: '/login',
+      to: currentUser ? 'admin/manageArticles' : 'admin',
       text: 'Administration',
       className: null,
     },

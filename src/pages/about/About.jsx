@@ -1,6 +1,6 @@
 import { useGlobalArticleContext } from '../../hooks';
 import { useEffect } from 'react';
-import { Article, Banner, InstituteBanner } from '../../components';
+import { Banner, InstituteBanner } from '../../components';
 import './About.css'
 
 const About = () => {
@@ -8,14 +8,6 @@ const About = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
-    const {
-        isLoading,
-    } = useGlobalArticleContext();
-
-    if (isLoading) {
-        return <div className='loading'>Loading...</div>;
-    }
 
     return (
         <section className='home-container'>
@@ -29,20 +21,16 @@ const About = () => {
                      <br />
                      <br />
                     There are currently 3 areas we are concentrating on:
-                    <ul>
                         <li><span className='about-points'>A. The IDF</span> - we are committed to finding the best equipment for our IDF soldiers' needs including our amazing reservists.</li>
                         <li><span className='about-points'>B. Civil Guard First Response Units</span> - we are dedicating our efforts to those brave volunteers who are taking on the responsibility of protecting their communities, both big and small from incursions of terrorists.</li>
                         <li><span className='about-points'>C. The Police and other Security forces</span> - we are investing in their equipment to ensure they have the proper tools to encounter any situation that presents itself as the last line of defense for Israel's citizenry.</li>
-                    </ul>
                     <br />
                     Yes, there are many groups that have formed to raise money, however, we already have manufacturers, suppliers, and importers with stock for immediate purchase. <br />
                     <span className='about-points'>The equipment  includes:</span>
-                    <ul>
                         <li><span className='about-points'>1.</span> Ceramic bullet proof vests (both 3 & 4 level protection)</li>
                         <li><span className='about-points'>2.</span> Helmets</li>
                         <li><span className='about-points'>3.</span> Infrared cameras with automatic encroachment alarms</li>
                         <li><span className='about-points'>4.</span> Bullet proof patrol vehicles</li>
-                    </ul>
         <br />
 This is not a fund or non profit. All purchases are done by us or can be done by the donors themselves who will receive the invoice. 
 <br />

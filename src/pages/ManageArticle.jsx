@@ -1,5 +1,5 @@
 import { useParams } from 'react-router';
-import { ArticleForm } from '../components';
+import { NewArticle } from '../components';
 
 const ManageArticle = () => {
     const { articleId } = useParams();
@@ -14,7 +14,7 @@ const ManageArticle = () => {
     return (
         <div className="single-column-container">
             <h2>{title}</h2>
-            <ArticleForm articleId={articleId} btnText={btnText} />
+            <NewArticle articleId={articleId} btnText={btnText} />
         </div>
     );
 };

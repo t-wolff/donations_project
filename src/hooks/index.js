@@ -1,7 +1,6 @@
 import useArticle from '../components/article/useArticle';
-import useArticleForm from '../components/articleForm/useArticleForm';
+import useNewArticle from '../pages/newArticle/useNewArticle';
 import { useGlobalAuthContext } from './useGlobalAuthContext';
-import useLoginForm from '../pages/login/useLoginForm';
 import { useGlobalArticleContext } from './useGlobalArticleContext';
 
-export { useArticleForm, useLoginForm, useArticle, useGlobalAuthContext, useGlobalArticleContext };
+export { useNewArticle, useArticle, useGlobalAuthContext, useGlobalArticleContext };

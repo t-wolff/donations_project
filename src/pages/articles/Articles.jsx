@@ -1,13 +1,19 @@
 import { useGlobalArticleContext } from '../../hooks';
 
-import { Article, Banner, InstituteBanner } from '../../components';
 import './Articles.css'
 
 const Articles = () => {
+    const {
+        isLoading,
+    } = useGlobalArticleContext();
+
+    if (isLoading) {
+        return <div className='loading'>Loading...</div>;
+    }
     
     return (
         <section className='none'>
-         No articles yet 
+            <h1>All articles</h1>
         </section>
     );
 };
