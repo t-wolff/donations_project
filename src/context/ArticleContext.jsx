@@ -1,16 +1,19 @@
 import React, { createContext, useState, useEffect } from "react";
-import { addArticle, updateArticle, deleteArticle, getAllArticles, toggleIsArchive } from '../api/api';
+import { addArticle, updateArticle, deleteArticle, getAllArticles, getNonArchiveArticles, toggleIsArchive } from '../api/api';
 
 export const ArticleContext = createContext();
 
 export const ArticleProvider = ({ children }) => {
+  const [allArticles, setAllArticles] = useState([]);
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchAllArticles = async () => {
     try {
-      const articlesData = await getAllArticles();
+      const allArticlesData = await getAllArticles();
+      const articlesData = await getNonArchiveArticles();
+      setAllArticles(allArticlesData);
       setArticles(articlesData);
       setIsLoading(false);
     } catch (err) {
@@ -26,7 +29,7 @@ export const ArticleProvider = ({ children }) => {
   const addNewArticle = async (article) => {
     try {
       await addDoc(doc(db, "articles"), { ...article, timeStamp: serverTimestamp() });
-      setArticles(prevArticles => ([...prevArticles, article]));
+      setAllArticles(prevArticles => ([...prevArticles, article]));
     } catch (err) {
       setError(err.message);
     }
@@ -35,7 +38,7 @@ export const ArticleProvider = ({ children }) => {
   const editArticle = async (articleData) => {
     try {
       const updatedArticle = await updateArticle(articleData, articleData.id);
-      setArticles((prevArticles) =>
+      setAllArticles((prevArticles) =>
         prevArticles.map((article) => (article.id === articleData.id ? updatedArticle : article))
       );
     } catch (err) {
@@ -54,7 +57,7 @@ export const ArticleProvider = ({ children }) => {
   const removeArticle = async (id) => {
     try {
       await deleteArticle(id);
-      setArticles((prevArticles) =>
+      setAllArticles((prevArticles) =>
         prevA.filter((article) => (article.id !== id))
       );
     } catch (err) {
@@ -69,6 +72,7 @@ export const ArticleProvider = ({ children }) => {
   return (
     <ArticleContext.Provider
       value={{
+        allArticles,
         articles,
         isLoading,
         error,

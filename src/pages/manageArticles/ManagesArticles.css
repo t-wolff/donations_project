@@ -1,11 +1,12 @@
-/* .manage-articles-container {
-
-} */
+.manage-articles-container {
+    height: auto;
+    padding-bottom: 10rem;
+}
 .manage-articles-header {
     display: flex;
     justify-content: space-between;
     font-size: 1.6rem;
-    padding-bottom: 2.6rem;
+    padding-bottom: 3.2rem;
 }
 .manage-articles-link{
     color: var(--secondary-text-color);

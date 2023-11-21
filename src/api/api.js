@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { collection, query, where, getDocs, setDoc, doc } from 'firebase/firestore';
-import { db, } from '../firebase/firebase';
+import { db } from '../firebase/firebase';
 
 const NEWS_URL = import.meta.env.VITE_SIREN_HISTORY_URL;
 
@@ -27,11 +27,10 @@ export const getArticle = async (articleId) => {
 	const q = query(collection(db, 'articles'), where('id', '==', articleId));
 
 	const querySnapshot = await getDocs(q);
-	querySnapshot.forEach((doc) => {
-		console.log(doc.id, ' => ', doc.data());
-	});};
+	return { id: querySnapshot.id, ...querySnapshot.data() }
+}
 
-export const updateArticle = async (article, articleId) => {
+export const updateArticle = async (article) => {
 	// return await requestArticles('put', `/${articleId}`, article);
 };
 

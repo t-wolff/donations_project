@@ -8,7 +8,7 @@ import NavListItem from './navbar/NavListItem';
 import Banner from './banner/Banner';
 import InstituteBanner from './instituteBanner/InstituteBanner';
 import AboutBanner from './aboutBanner/AboutBanner';
-import Login from './login/Login';
+import Login from './login/LogIn';
 
 export {
 	Navbar,

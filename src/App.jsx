@@ -6,7 +6,6 @@ import {
 	Home,
 	About,
 	Article,
-	ManageArticle,
 	Contact,
 	NotFound,
 	Articles,
@@ -46,8 +45,6 @@ const routes = [
 						path: ':articleId/edit',
 						element: (
 							<ProtectedRoute>
-								{' '}
-								<ManageArticle />
 							</ProtectedRoute>
 						),
 					},

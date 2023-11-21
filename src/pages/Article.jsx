@@ -19,13 +19,6 @@ const Article = () => {
                 <img className='article-img' src={article.image} alt='article-img' />
                 <h2 className='article-text'>{`${article.text}$`}</h2>
                 <h2 className='article-footer'>{`${article.footer}$`}</h2>
-                {/* {user && user.isAdmin && (
-                    <>
-                        <Link to={`/products/${article.id}/edit`} className="btn">Edit</Link>
-                        <button onClick={handleDelete} className="btn">Delete</button>
-                    </>
-                )
-                } */}
             </div>
         </main>
 
