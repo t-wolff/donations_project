@@ -15,15 +15,15 @@ const ManageArticles = () => {
 		[toggleArchive]
 	  );
 
-	// useEffect(() => {
-	// 	if (allArticles[0]) {
-	// 		setArticlesData(allArticles);
-	// 	}
-	// }, [allArticles]);
+	useEffect(() => {
+		if (allArticles[0]) {
+			setArticlesData(allArticles);
+		}
+	}, [allArticles]);
 
-	// useEffect(() => {
-	// 	fetchAllArticles();
-	// }, [location.key, handleArchiveToggle]);
+	useEffect(() => {
+		fetchAllArticles();
+	}, [handleArchiveToggle]);
 
 
 	return (

@@ -13,10 +13,6 @@ const Articles = () => {
       setArticlesData(articles)
     };
 	}, [articles]);
-
-	// useEffect(()=>{
-  //   fetchAllArticles()
-  // }, [location.key])
   
   return (
     <div className="articles-container">
