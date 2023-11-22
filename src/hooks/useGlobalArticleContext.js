@@ -1,7 +1,7 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 
-import { ArticleContext } from '../context/ArticleContext';
+import { ArticleContext } from "../context/ArticleContext";
 
 export const useGlobalArticleContext = () => {
-	return useContext(ArticleContext);
+  return useContext(ArticleContext);
 };

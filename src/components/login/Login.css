@@ -1,61 +1,61 @@
 .logout {
-	width: 80vw;
-	height: 4vh;
-	background-color: #ff002b;
+  width: 80vw;
+  height: 4vh;
+  background-color: #ff002b;
+  padding-top: 0.7rem;
 }
 .logout h2 {
-	text-align: center;
+  text-align: center;
 }
 .logout button {
-	color: var(--secondary-text-color);
-	border: none;
-	background-color: var(--primary-text-color);
-	position: relative;
-	left: 126.4rem;
-	top: 1.3rem;
-	padding: 0.6rem;
-	width: 8rem;
-	font-weight: 600;
+  color: var(--secondary-text-color);
+  border: none;
+  background-color: var(--primary-text-color);
+  position: relative;
+  left: 126.4rem;
+  top: 0.5rem;
+  padding: 0.68rem;
+  width: 8rem;
+  font-weight: 600;
 }
 .logout button:hover {
-	opacity: 0.7;
+  opacity: 0.7;
 }
 .login-container {
-	margin-top: 1rem;
-	height: 70vh;
-	/* text-align: center; */
-	display: flex;
-	justify-content: center;
-	box-shadow: 0.6rem 0.5rem 5rem var(--secondary-background-color);
+  margin-top: 1rem;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0.6rem 0.5rem 5rem var(--secondary-background-color);
 }
 .login-form-container h2 {
-	text-align: center;
-    margin-top: 4rem;
-    font-size: 3rem;
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 3rem;
 }
 .login-form-container form {
-	display: flex;
-	flex-direction: column;
-	width: 30rem;
-	height: 40rem;
-	padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  height: 40rem;
+  padding: 1rem;
 }
 .login-form-container label {
-    font-size: 1.6rem;
-    font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 700;
 }
 .login-form-container input {
-    height: 3rem;
-    border: 0.2rem solid var(--primary-text-color); 
-    font-size: 1.6rem;
-    padding-left: 0.6rem;
-    margin-bottom: 1rem
+  height: 3rem;
+  border: 0.2rem solid var(--primary-text-color);
+  font-size: 1.6rem;
+  padding-left: 0.6rem;
+  margin-bottom: 1rem;
 }
 .login-form-container button {
-    height: 3rem;
-    font-size: 1.4rem;
+  height: 3rem;
+  font-size: 1.4rem;
 }
 .login-form-container span {
-    font-size: 1.2rem;
-    color: #ff002b;
+  font-size: 1.2rem;
+  color: #ff002b;
 }

@@ -1,19 +1,18 @@
-
 .container {
-	height: 100vh;
-	margin: 0 auto;
-	display: grid;
-	grid-template-rows: 1fr 8fr 1fr;
+  height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 1fr 8fr 1fr;
 }
 
 .footer {
-	background-color: var(--secondary-background-color);
-	height: 5rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	font-size: 1.5rem;
-	z-index: 2;
-	margin-top: 1rem;
+  background-color: var(--secondary-background-color);
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5rem;
+  z-index: 2;
+  margin-top: 1rem;
 }

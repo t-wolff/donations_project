@@ -1,11 +1,19 @@
 import React, { createContext, useState, useEffect } from "react";
-import { addArticle, updateArticle, deleteArticle, getAllArticles, getNonArchiveArticles, toggleIsArchive } from '../api/api';
+import {
+  addArticle,
+  updateArticle,
+  getAllArticles,
+  getNonArchiveArticles,
+  toggleIsArchive,
+  getArticle,
+} from "../firebase/api";
 
 export const ArticleContext = createContext();
 
 export const ArticleProvider = ({ children }) => {
   const [allArticles, setAllArticles] = useState([]);
   const [articles, setArticles] = useState([]);
+  const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -26,10 +34,10 @@ export const ArticleProvider = ({ children }) => {
     fetchAllArticles();
   }, []);
 
-  const addNewArticle = async (article) => {
+  const addNewArticle = async (articleData) => {
     try {
-      await addDoc(doc(db, "articles"), { ...article, timeStamp: serverTimestamp() });
-      setAllArticles(prevArticles => ([...prevArticles, article]));
+      const article = await addArticle(...articleData);
+      setAllArticles((prevArticles) => [...prevArticles, article]);
     } catch (err) {
       setError(err.message);
     }
@@ -39,7 +47,9 @@ export const ArticleProvider = ({ children }) => {
     try {
       const updatedArticle = await updateArticle(articleData, articleData.id);
       setAllArticles((prevArticles) =>
-        prevArticles.map((article) => (article.id === articleData.id ? updatedArticle : article))
+        prevArticles.map((article) =>
+          article.id === articleData.id ? updatedArticle : article
+        )
       );
     } catch (err) {
       setError(err.message);
@@ -49,19 +59,20 @@ export const ArticleProvider = ({ children }) => {
   const toggleArchive = async (articleData) => {
     try {
       await toggleIsArchive(articleData);
+      fetchAllArticles();
     } catch (err) {
       setError(err.message);
     }
-  }
+  };
 
-  const removeArticle = async (id) => {
+  const getArticleById = async (articleId) => {
     try {
-      await deleteArticle(id);
-      setAllArticles((prevArticles) =>
-        prevA.filter((article) => (article.id !== id))
-      );
-    } catch (err) {
-      setError(err.message);
+      const articleData = await getArticle(articleId);
+      setArticle(articleData);
+      setIsLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setIsLoading(false);
     }
   };
 
@@ -74,15 +85,17 @@ export const ArticleProvider = ({ children }) => {
       value={{
         allArticles,
         articles,
+        article,
         isLoading,
         error,
         addNewArticle,
         editArticle,
-        removeArticle,
+        getArticleById,
         clearError,
         fetchAllArticles,
         toggleArchive,
-      }}>
+      }}
+    >
       {children}
     </ArticleContext.Provider>
   );

@@ -1,99 +1,84 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
-
-import { getArticle } from '../../api/api';
-import { useGlobalArticleContext } from '../../hooks/useGlobalArticleContext';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+import { useGlobalArticleContext } from "../../hooks";
 
 const useNewArticle = (articleId) => {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { addNewArticle } = useGlobalArticleContext();
 
-	const [article, setArticle] = useState({
-		title: '',
-		subTitle: '',
-		image: '',
-		text: '',
-		footer: '',
-	});
-	const [errors, setErrors] = useState({
-		title: null,
-		subTitle: null,
-		image: null,
-		text: null,
-		footer: null,
-	});
+  const [article, setArticle] = useState({
+    title: "",
+    subtitle: "",
+    body: "",
+    footer: "",
+  });
+  const [errors, setErrors] = useState({
+    title: null,
+    subtitle: null,
+    body: null,
+    footer: null,
+  });
 
-	// useEffect(() => {
-	// 	if (articleId) {
-	// 		const fetchArticle = async () => {
-	// 			const articleData = await getArticle(articleId);
-	// 			setArticle(articleData);
-	// 		};
+  const handleChange = (e) => {
+    setArticle({
+      ...article,
+      [e.target.id]: e.target.value,
+    });
+    setErrors((prevState) => ({
+      ...prevState,
+      [e.target.id]: null,
+    }));
+  };
 
-	// 		fetchArticle();
-	// 	}
-	// }, [articleId]);
+  const handleSubmit = (data) => {
+    // e.preventDefault();
+    let isValid = true;
+    const newErrors = {};
 
-	const { addNewArticle, editArticle } = useGlobalArticleContext();
+    const validationRules = [
+      {
+        field: "title",
+        test: (val) => val.length >= 10,
+        errorMessage: "title must be at least 10 characters long",
+      },
+      {
+        field: "subtitle",
+        test: (val) => val.length >= 10,
+        errorMessage: "subtitle must be at least 10 characters long",
+      },
+      {
+        field: "body",
+        test: (val) => val.length >= 100,
+        errorMessage: "body must be at least 100 characters long",
+      },
+      {
+        field: "footer",
+        test: (val) => val.length >= 10,
+        errorMessage: "footer must be at least 10 characters long",
+      },
+    ];
 
-	const handleChange = (e) => {
-		setArticle({
-			...article,
-			[e.target.name]: e.target.value,
-		});
-		setErrors((prevState) => ({
-			...prevState,
-			[e.target.name]: null,
-		}));
-	};
+    validationRules.forEach(({ field, test, errorMessage }) => {
+      if (!test(article[field])) {
+        newErrors[field] = errorMessage;
+        isValid = false;
+      }
+    });
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		let isValid = true;
-		const newErrors = {};
+    setErrors(newErrors);
 
-		const validationRules = [
-			{
-				field: 'title',
-				test: (val) => val.length >= 10,
-				errorMessage: 'title must be at least 10 characters long',
-			},
-			{
-				field: 'subtitle',
-				test: (val) => val.length >= 10,
-				errorMessage: 'subtitle must be at least 10 characters long',
-			},
-			{
-				field: 'text',
-				test: (val) => val.length >= 100,
-				errorMessage: 'text must be at least 100 characters long',
-			},
-			{
-				field: 'footer',
-				test: (val) => val.length >= 10,
-				errorMessage: 'footer must be at least 10 characters long',
-			},
-		];
+    if (isValid) {
+      if (articleId) {
+        // editArticle(article);
+      } else {
+        setArticle({ ...article, img: data });
+        addNewArticle(article);
+      }
+      navigate("/");
+    }
+  };
 
-		validationRules.forEach(({ field, test, errorMessage }) => {
-			if (!test(article[field])) {
-				newErrors[field] = errorMessage;
-				isValid = false;
-			}
-		});
-
-		setErrors(newErrors);
-
-		if (isValid) {
-			if (articleId) {
-				editArticle(article);
-			} else {
-				addNewArticle(article);
-			}
-			navigate('/');
-		}
-	};
-
-	return { handleChange, handleSubmit, article, errors };
+  return { handleChange, handleSubmit, article, errors };
 };
 
 export default useNewArticle;

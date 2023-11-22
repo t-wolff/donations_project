@@ -1,56 +1,56 @@
 .navbar {
-	position: sticky;
-	top: 0;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	height: 10rem;
-	padding-left: 10vw;
-	padding-right: 10vw;
-	background-color: var(--secondary-background-color);
-	border-bottom: 0.4rem solid var(--secondary-text-color);
-	line-height: 1.5rem;
-	z-index: 2;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10rem;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  background-color: var(--secondary-background-color);
+  border-bottom: 0.4rem solid var(--secondary-text-color);
+  line-height: 1.5rem;
+  z-index: 2;
 }
 .navbar-logo-container {
-	display: flex;
+  display: flex;
 }
 .navbar-logo {
-	padding-top: 1.6rem;
-	font-size: 3rem;
-	letter-spacing: 0.2rem;
-	color: var(--primary-text-color);
-	font-family: 'Sanchez', serif;
+  padding-top: 1.6rem;
+  font-size: 3rem;
+  letter-spacing: 0.2rem;
+  color: var(--primary-text-color);
+  font-family: "Sanchez", serif;
 }
 .nav-links {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .nav-links a {
-	color: var(--primary-text-color);
-	font-size: 1.6rem;
-	font-weight: 700;
-	border-radius: 0.8rem;
-	height: 4rem;
-	padding: 1.2rem;
+  color: var(--primary-text-color);
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-radius: 0.8rem;
+  height: 4rem;
+  padding: 1.2rem;
 }
 .nav-links a:hover {
-	color: var(--secondary-text-color);
+  color: var(--secondary-text-color);
 }
 .nav-links a.active {
-	text-decoration: underline;
-	text-underline-offset: 0.6rem;
+  text-decoration: underline;
+  text-underline-offset: 0.6rem;
 }
 .nav-links .login-btn {
-	font-size: 2rem;
-	width: 20rem;
-	height: 4rem;
-	background-color: var(--primary-text-color);
-	margin-left: 2.2rem;
-	color: #fff;
-	font-size: 1.8rem;
+  font-size: 2rem;
+  width: 20rem;
+  height: 4rem;
+  background-color: var(--primary-text-color);
+  margin-left: 2.2rem;
+  color: #fff;
+  font-size: 1.8rem;
 }
 .nav-links .login-btn.active {
-	text-decoration: none;
+  text-decoration: none;
 }

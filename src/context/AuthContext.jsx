@@ -1,22 +1,22 @@
 import { createContext, useEffect, useReducer } from "react";
 
 const AuthReducer = (state, action) => {
-    switch (action.type) {
-      case "LOGIN": {
-        return {
-          currentUser: action.payload,
-        };
-      }
-      case "LOGOUT": {
-        return {
-          currentUser: null,
-        };
-      }
-      default:
-        return state;
+  switch (action.type) {
+    case "LOGIN": {
+      return {
+        currentUser: action.payload,
+      };
     }
-  };
-  
+    case "LOGOUT": {
+      return {
+        currentUser: null,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
 const LOGIN_STATE = {
   currentUser: JSON.parse(localStorage.getItem("user")) || null,
 };

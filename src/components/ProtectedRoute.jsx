@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { useGlobalAuthContext } from '../hooks';
+import { useGlobalAuthContext } from "../hooks";
 
 const ProtectedRoute = ({ children }) => {
   const { currentUser } = useGlobalAuthContext();
@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     if (!currentUser) {
-      navigate('/');
+      navigate("/");
     }
   }, [navigate, currentUser]);
 

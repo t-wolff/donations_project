@@ -1,41 +1,39 @@
-.institute-container{
-	width: 80vw;
-	height: 38vh;
-	/* border-radius: 0.8rem; */
-	margin: 2rem;
-	font-size: 1.8rem;
-	background-color: var(--primary-text-color);
-	color: var(--secondary-text-color);
-	padding: 2rem;
-	display: flex;
-	justify-content: space-around;
-	/* text-align: center; */
+.institute-container {
+  width: 80vw;
+  height: 38vh;
+  margin: 2rem;
+  font-size: 1.8rem;
+  background-color: var(--primary-text-color);
+  color: var(--secondary-text-color);
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
 }
 
 .institute {
-	text-align: center;
-	width: 30rem;
+  text-align: center;
+  width: 30rem;
 }
 
-.institute p{
-	margin-top: 1rem;
-	line-height: 2rem;
+.institute p {
+  margin-top: 1rem;
+  line-height: 2rem;
 }
 
-.institute-logo{
-	height: 8rem;
-	width: 8rem;
+.institute-logo {
+  height: 8rem;
+  width: 8rem;
 }
 
 .institute-logo-background {
-	height: 10rem;
-	width: 10rem;
-	background-color: white;
-	border-radius: 50%;
-	padding: 1rem;
-	padding-top: 0;
-	margin: 1rem;
-	margin-left: 10rem;
-	margin-bottom: 2rem;
-	padding: 1rem;
+  height: 10rem;
+  width: 10rem;
+  background-color: white;
+  border-radius: 50%;
+  padding: 1rem;
+  padding-top: 0;
+  margin: 1rem;
+  margin-left: 10rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
 }

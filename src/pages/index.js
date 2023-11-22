@@ -1,21 +1,21 @@
-import Home from './home/Home';
-import Article from './Article';
-import NotFound from './notFound/NotFound';
-import About from './about/About';
-import Contact from './contact/Contact';
-import Articles from './articles/Articles';
-import ManageArticles from './manageArticles/ManageArticles';
-import Admin from './admin/Admin';
-import NewArticle from './newArticle/NewArticle';
+import About from "./about/About";
+import Admin from "./admin/Admin";
+import Article from "./article/Article";
+import Articles from "./articles/Articles";
+import Contact from "./contact/Contact";
+import Home from "./home/Home";
+import ManageArticles from "./manageArticles/ManageArticles";
+import NewArticle from "./newArticle/NewArticle";
+import NotFound from "./notFound/NotFound";
 
 export {
-	Home,
-	Article,
-	NotFound,
-	About,
-	Contact,
-	Articles,
-	ManageArticles,
-	Admin,
-	NewArticle,
+  About,
+  Admin,
+  Article,
+  Articles,
+  Contact,
+  Home,
+  ManageArticles,
+  NewArticle,
+  NotFound,
 };
