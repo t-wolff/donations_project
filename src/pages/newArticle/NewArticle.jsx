@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { useNavigate, Link } from "react-router-dom";
-import { storage } from "../../firebase/firebase";
+import { Link } from "react-router-dom";
 import useNewArticle from "./useNewArticle";
+import imgSvg from "../../assets/add-photo.svg";
+
 import Input from "../../components/input/Input";
 import "./NewArticle.css";
 
 const NewArticle = ({ articleId }) => {
-  const { article, errors, handleChange, handleSubmit } = useNewArticle();
+  const { article, errors, handleChange, handleSubmit, image, percentLoad, uploadFile} = useNewArticle();
   const [file, setFile] = useState(null);
-  const [image, setImage] = useState(null);
-  const [data, setData] = useState({});
-  const [per, setPerc] = useState(null);
-  const navigate = useNavigate();
 
   const fields = [
     {
@@ -52,36 +48,15 @@ const NewArticle = ({ articleId }) => {
   ];
 
   useEffect(() => {
-    const uploadFile = () => {
-      const name = new Date().getTime() + file.name;
-      const storageRef = ref(storage, name);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setPerc(progress);
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setData((prev) => ({ ...prev, img: downloadURL }));
-            setImage(downloadURL);
-          });
-        }
-      );
-    };
-
-    file && uploadFile();
+    file && uploadFile(file);
   }, [file]);
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    handleSubmit(image);
+    const res = handleSubmit(e)
+    if(res) {
+      console.log(res)
+    };
   };
 
   return (
@@ -95,7 +70,7 @@ const NewArticle = ({ articleId }) => {
       <div className="new-article-form">
         <div>
           {fields.map((input) => (
-            <div>
+            <div key={input.id}>
               <div className={`new-article-input ${input.class}`}>
                 <label htmlFor={input.id}>{input.label}</label>
                 <textarea
@@ -112,14 +87,14 @@ const NewArticle = ({ articleId }) => {
         </div>
         {/* <h4>image</h4> */}
         <form onSubmit={handleAdd} className="img-form">
-          <label htmlFor="file">Choose a picture</label>
+          <label htmlFor="file">{image ? <img src={image}/> : <img className="svg-img" src={imgSvg}/>}</label>
           <input
             type="file"
             id="file"
             onChange={(e) => setFile(e.target.files[0])}
             style={{ display: "none" }}
           />
-          <button type="submit" disabled={per !== null && per < 100}>
+          <button type="submit" disabled={percentLoad !== null && percentLoad < 100}>
             Send
           </button>
         </form>

@@ -6,8 +6,10 @@ import {
   setDoc,
   doc,
   getDoc,
+  addDoc,
 } from "firebase/firestore";
 import { db } from "./firebase";
+import { serverTimestamp } from "firebase/firestore";
 
 export const getAllArticles = async () => {
   const allArticlesArr = [];

@@ -31,29 +31,30 @@ export const ArticleProvider = ({ children }) => {
 
   useEffect(() => {
     fetchAllArticles();
+    console.log('fetched data on empty dependency arr')
   }, []);
 
   const addNewArticle = async (articleData) => {
     try {
-      const article = await addArticle(...articleData);
-      setAllArticles((prevArticles) => [...prevArticles, article]);
+      await addArticle(articleData);
+      fetchAllArticles()
     } catch (err) {
       setError(err.message);
     }
   };
 
-  const editArticle = async (articleData) => {
-    try {
-      const updatedArticle = await updateArticle(articleData, articleData.id);
-      setAllArticles((prevArticles) =>
-        prevArticles.map((article) =>
-          article.id === articleData.id ? updatedArticle : article
-        )
-      );
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  // const editArticle = async (articleData) => {
+  //   try {
+  //     const updatedArticle = await updateArticle(articleData, articleData.id);
+  //     setAllArticles((prevArticles) =>
+  //       prevArticles.map((article) =>
+  //         article.id === articleData.id ? updatedArticle : article
+  //       )
+  //     );
+  //   } catch (err) {
+  //     setError(err.message);
+  //   }
+  // };
 
   const toggleArchive = async (articleData) => {
     try {
@@ -88,10 +89,9 @@ export const ArticleProvider = ({ children }) => {
         isLoading,
         error,
         addNewArticle,
-        editArticle,
+        // editArticle,
         getArticleById,
         clearError,
-        fetchAllArticles,
         toggleArchive,
       }}
     >

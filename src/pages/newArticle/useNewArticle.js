@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useGlobalArticleContext } from "../../hooks";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../../firebase/firebase";
 
 const useNewArticle = (articleId) => {
   const navigate = useNavigate();
-  const { addNewArticle } = useGlobalArticleContext();
+  const { addNewArticle, error } = useGlobalArticleContext();
+  const [percentLoad, setPercentLoad] = useState(null);
+  const [image, setImage] = useState(null);
 
   const [article, setArticle] = useState({
     title: "",
@@ -30,8 +34,33 @@ const useNewArticle = (articleId) => {
     }));
   };
 
-  const handleSubmit = (data) => {
-    // e.preventDefault();
+  const uploadFile = (file) => {
+	const name = new Date().getTime() + file.name;
+	const storageRef = ref(storage, name);
+	const uploadTask = uploadBytesResumable(storageRef, file);
+
+	uploadTask.on(
+	  "state_changed",
+	  (snapshot) => {
+		const progress =
+		  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+		setPercentLoad(progress);
+	  },
+	  (error) => {
+		console.log(error);
+	  },
+	  () => {
+		getDownloadURL(uploadTask.snapshot.ref).then((imgURL) => {
+		  setArticle((prevArticle) => ({ ...prevArticle, img: imgURL }));
+		  setImage(imgURL);
+		});
+	  }
+	);
+  };
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     let isValid = true;
     const newErrors = {};
 
@@ -71,14 +100,15 @@ const useNewArticle = (articleId) => {
       if (articleId) {
         // editArticle(article);
       } else {
-        setArticle({ ...article, img: data });
+		console.log(article)
         addNewArticle(article);
+		if (error) {return error}
       }
-      navigate("/");
+      navigate('/admin/manageArticles');
     }
   };
 
-  return { handleChange, handleSubmit, article, errors };
+  return { uploadFile, handleChange, handleSubmit, article, errors, percentLoad,image };
 };
 
 export default useNewArticle;

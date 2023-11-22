@@ -5,7 +5,6 @@ import "./ManagesArticles.css";
 
 const ManageArticles = () => {
   const { allArticles, toggleArchive } = useGlobalArticleContext();
-  const [articlesData, setArticlesData] = useState([]);
 
   const handleArchiveToggle = useCallback(
     (article) => {
@@ -13,12 +12,6 @@ const ManageArticles = () => {
     },
     [toggleArchive]
   );
-
-  useEffect(() => {
-    if (allArticles[0]) {
-      setArticlesData(allArticles);
-    }
-  }, [allArticles]);
 
   return (
     <div className="manage-articles-container">
@@ -29,12 +22,12 @@ const ManageArticles = () => {
         </Link>
       </header>
       <div className="articles-container">
-        {articlesData.map((article) => (
+        {allArticles.map((article) => (
           <div className="single-article-container" key={article.id}>
             <h2>{article.title}</h2>
             <h3>{article.subtitle}</h3>
             <img src={article.img} alt="image" />
-            <div>{article.text}</div>
+            <div>{article.body}</div>
             <button onClick={() => handleArchiveToggle(article)}>
               {article.isArchive ? "UnArchive" : "Archive"}
             </button>
