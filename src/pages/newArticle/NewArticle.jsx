@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { doc, addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate, Link } from "react-router-dom";
-import { db, storage } from "../../firebase/firebase";
-import { useNewArticle } from "../../hooks";
+import { storage } from "../../firebase/firebase";
+import useNewArticle from "./useNewArticle";
 import Input from "../../components/input/Input";
 import "./newArticle.css";
 

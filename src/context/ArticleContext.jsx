@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import {
   addArticle,
-  updateArticle,
   getAllArticles,
   getNonArchiveArticles,
   toggleIsArchive,
