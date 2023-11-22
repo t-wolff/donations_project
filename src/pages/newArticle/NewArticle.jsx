@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { storage } from "../../firebase/firebase";
 import useNewArticle from "./useNewArticle";
 import Input from "../../components/input/Input";
-import "./newArticle.css";
+import "./NewArticle.css";
 
 const NewArticle = ({ articleId }) => {
   const { article, errors, handleChange, handleSubmit } = useNewArticle();
