@@ -5,16 +5,19 @@ import { useGlobalArticleContext } from "./hooks";
 import {
   Home,
   About,
-  Article,
   Contact,
   NotFound,
   Articles,
-  ManageArticles,
   Admin,
-  NewArticle,
+  Donate,
 } from "./pages";
 
-import { ProtectedRoute, SharedLayout } from "./components";
+import {
+  ProtectedRoute,
+  SharedLayout,
+  FullPageArticle,
+  NewArticle,
+} from "./components";
 
 const routes = [
   {
@@ -42,7 +45,7 @@ const routes = [
           },
           {
             path: ":articleId",
-            element: <Article />,
+            element: <FullPageArticle />,
           },
         ],
       },
@@ -52,11 +55,24 @@ const routes = [
         children: [
           {
             path: "manageArticles",
-            element: (
-              <ProtectedRoute>
-                <ManageArticles />
-              </ProtectedRoute>
-            ),
+            children: [
+              {
+                index: true,
+                element: (
+                  <ProtectedRoute>
+                    <Articles isManage={true} />
+                  </ProtectedRoute>
+                ),
+              },
+              {
+                path: ":articleId",
+                element: (
+                  <ProtectedRoute>
+                    <FullPageArticle isManage={true} />
+                  </ProtectedRoute>
+                ),
+              },
+            ],
           },
           {
             path: "newArticle",
@@ -67,6 +83,10 @@ const routes = [
             ),
           },
         ],
+      },
+      {
+        path: "donate",
+        element: <Donate />,
       },
       {
         path: "*",

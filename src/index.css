@@ -10,9 +10,9 @@
   --secondary-text-color: #ffffff;
   --primary-background-color: #ffffff;
   --secondary-background-color: #9cc4ff;
-  --primary-color: #4655ff;
   --secondary-color: #000fb8;
-  --third-color: #000860;
+  --primary-red: #ff002b;
+  --primary-green: #00d724;
 }
 
 li {

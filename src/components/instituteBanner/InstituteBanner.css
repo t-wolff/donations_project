@@ -28,7 +28,7 @@
 .institute-logo-background {
   height: 10rem;
   width: 10rem;
-  background-color: white;
+  background-color: var(--secondary-text-color);
   border-radius: 50%;
   padding: 1rem;
   padding-top: 0;

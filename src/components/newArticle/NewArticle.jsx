@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import useNewArticle from "./useNewArticle";
 import imgSvg from "../../assets/add-photo.svg";
 
-import Input from "../../components/input/Input";
+import Input from "../input/Input";
 import "./NewArticle.css";
 
 const NewArticle = ({ articleId }) => {

@@ -1,41 +1,54 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useGlobalArticleContext } from "../../hooks";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState, useCallback } from "react";
+import { useGlobalArticleContext, useGlobalAuthContext } from "../../hooks";
+import { Article } from "../../components";
 import "./Articles.css";
 
-const Articles = () => {
-  const { articles } = useGlobalArticleContext();
+const Articles = ({ isManage }) => {
+  const { articles, allArticles, toggleArchive } = useGlobalArticleContext();
+  const { currentUser } = useGlobalAuthContext();
   const [articlesData, setArticlesData] = useState([]);
-  const location = useLocation();
   const navigate = useNavigate();
 
+  const handleArchiveToggle = useCallback(
+    (article) => {
+      currentUser && toggleArchive(article);
+    },
+    [toggleArchive]
+  );
+
   useEffect(() => {
-    if (articles[0]) {
+    if (isManage && currentUser) {
+      setArticlesData(allArticles);
+    } else {
       setArticlesData(articles);
     }
-  }, [articles]);
+  }, [allArticles, articles]);
 
   const handleArticleClick = (article) => {
     navigate(`${article.id}`);
   };
 
+  console.log(articlesData)
   return (
-    <div className="articles-container">
+    <div className={isManage ? "manage-articles" : "articles-container"}>
       <header className="articles-header">
-        <h1>Articles</h1>
+        <h2>{isManage ? "Manage Articles" : "Articles"}</h2>
+        {isManage && (
+          <Link to="/admin/newArticle" className="new-article-link">
+            New Article
+          </Link>
+        )}
       </header>
-      <div className="articles-container">
-        {articlesData.map((article) => (
-          <div
-            className="single-article-container"
-            onClick={() => handleArticleClick(article)}
+      <div className="inner-articles-container">
+        {articlesData[0] && articlesData.map((article) => (
+          <Article
+            handleArchiveToggle={handleArchiveToggle}
+            handleArticleClick={handleArticleClick}
+            showArchive={isManage}
             key={article.id}
-          >
-            <h2>{article.title}</h2>
-            <h3>{article.subtitle}</h3>
-            <img src={article.img} alt="image" />
-            <div>{article.text}</div>
-          </div>
+            {...article}
+          />
         ))}
       </div>
     </div>

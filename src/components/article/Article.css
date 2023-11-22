@@ -1,17 +1,37 @@
-.article-container {
-	border-bottom: 0.1rem dotted rgb(185, 183, 183);
+.single-article-container {
+    box-shadow: 0.6rem 0.5rem 5rem var(--secondary-background-color);
+    /* padding: 1rem; */
+    position: relative;
+  }
+  .single-article-container img {
+    width: 43rem;
+    height: 34rem;
+  }
+  .single-article-container h2{
+    font-size: 3rem;
+  }
+  .single-article-container h3, p{
+    font-size: 2rem;
+  }
+  .single-article-text{
+    padding: 1rem;
+  }
+.single-article-container button {
+    padding: 0.8rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    border: none;
+    color: var(--secondary-text-color);
 }
-.article-name a,
-.article-name {
-	font-size: 2rem;
-	line-height: 4rem;
-	color: var(--primary-color);
+.single-article-container button:hover {
+    opacity: 0.8;
 }
-.article-subTitle {
-	color: var(--primary-text-color);
-	font-size: 1.5rem;
+.single-article-container .red-background{
+    background-color: var(--primary-red);
 }
-.article-img {
-	width: 25rem;
-	height: 20rem;
+.single-article-container .green-background{
+    background-color: var(--primary-green);
 }

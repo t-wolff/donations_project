@@ -1,7 +1,7 @@
 .logout {
   width: 80vw;
   height: 4vh;
-  background-color: #ff002b;
+  background-color: var(--primary-red);
   padding-top: 0.7rem;
 }
 .logout h2 {
@@ -57,5 +57,5 @@
 }
 .login-form-container span {
   font-size: 1.2rem;
-  color: #ff002b;
+  color: var(--primary-red);
 }
