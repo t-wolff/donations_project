@@ -1,4 +1,58 @@
+.donate-container {
+    width: 80vw;
+    margin-left: 10vw;
+    height: 74vh;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 4rem;
+    overflow: scroll;
+}
+.donate-container aside {
+    box-shadow: var(--primary-box-shadow);
+    width: 40vw;
+    padding: 6rem;
+    padding-left: 8rem;
+    padding-right: 8rem;
+}
+.donate-container aside h2 {
+    font-size: 6rem;
+    padding-bottom: 2rem;
+}
+.donate-container aside h4 {
+    font-size: 2.6rem;
+    padding-bottom: 2rem;
+
+}
+.payment-container{
+    padding: 6rem;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20rem;
+}
+.payment-container label{
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
+.payment-container input {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border: none;
+    border: 0.2rem solid var(--secondary-background-color);
+}
 .paypal-btn {
     width: 26rem;
     height: 6rem;
+}
+.btn-amount-container{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+}
+.btn-amount-container button{
+    height: 3rem;
+    width: 8rem;
+    
 }

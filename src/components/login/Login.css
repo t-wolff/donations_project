@@ -26,7 +26,7 @@
   height: 70vh;
   display: flex;
   justify-content: center;
-  box-shadow: 0.6rem 0.5rem 5rem var(--secondary-background-color);
+  box-shadow: var(--primary-box-shadow);
 }
 .login-form-container h2 {
   text-align: center;
