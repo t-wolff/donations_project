@@ -100,7 +100,6 @@ const useNewArticle = (articleId) => {
       if (articleId) {
         // editArticle(article);
       } else {
-		console.log(article)
         addNewArticle(article);
 		if (error) {return error}
       }

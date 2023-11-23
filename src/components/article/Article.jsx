@@ -6,6 +6,7 @@ const Article = ({
   showArchive,
   ...article
 }) => {
+    
   const trimText = (text) => {
     const trimmedText = text.substring(0, 200);
     return (

@@ -10,6 +10,7 @@ const Articles = ({ isManage }) => {
   const [articlesData, setArticlesData] = useState([]);
   const navigate = useNavigate();
 
+
   const handleArchiveToggle = useCallback(
     (article) => {
       currentUser && toggleArchive(article);
@@ -29,7 +30,6 @@ const Articles = ({ isManage }) => {
     navigate(`${article.id}`);
   };
 
-  console.log(articlesData)
   return (
     <div className={isManage ? "manage-articles" : "articles-container"}>
       <header className="articles-header">
