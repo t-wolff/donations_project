@@ -1,6 +1,6 @@
 .banner-container {
   width: 80vw;
-  height: 40vh;
+  height: 46rem;
   background-image: url("../../assets/soldiers-fighting.jpeg");
   /* border-radius: 0.8rem; */
   margin: 2rem;
@@ -12,7 +12,7 @@
   font-size: 4.6rem;
   line-height: 6rem;
   text-align: center;
-  padding-top: 6rem;
+  padding-top: 12rem;
 }
 .banner-title .banner-highlight {
   color: var(--secondary-color);

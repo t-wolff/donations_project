@@ -1,6 +1,6 @@
 .logout {
   width: 80vw;
-  height: 4vh;
+  height: 4rem;
   background-color: var(--primary-red);
   padding-top: 0.7rem;
 }
@@ -23,7 +23,7 @@
 }
 .login-container {
   margin-top: 1rem;
-  height: 70vh;
+  /* height: 70rem; */
   display: flex;
   justify-content: center;
   box-shadow: var(--primary-box-shadow);

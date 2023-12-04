@@ -1,7 +1,7 @@
 .donate-container {
     width: 80vw;
     margin-left: 10vw;
-    height: 80vh;
+    height: 91.6rem;
     display: flex;
     justify-content: space-around;
     padding-top: 4rem;
@@ -13,7 +13,7 @@
     padding: 6rem;
     padding-left: 8rem;
     padding-right: 8rem;
-    height: 70vh;
+    height: 82rem;
 }
 .donate-container aside h2 {
     font-size: 6rem;
