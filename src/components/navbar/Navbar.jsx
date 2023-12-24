@@ -18,11 +18,11 @@ const Navbar = () => {
       text: "Articles",
       className: null,
     },
-    {
-      to: "/contact",
-      text: "Contact Us",
-      className: null,
-    },
+    // {
+    //   to: "/contact",
+    //   text: "Contact Us",
+    //   className: null,
+    // },
     {
       to: currentUser ? "admin/manageArticles" : "admin",
       text: "Administration",
